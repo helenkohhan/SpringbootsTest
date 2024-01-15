@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<th:block th:include "/fragments/header.html"></th:block>
+	<table>
+		<thead>
+			<tr>
+				<th>사원번호</th>
+				<th>사원명</th>
+				<th>부서명</th>
+				<th>직급</th>
+				<th>급여</th>
+				<th>작업</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>[[${ENO}]]</td>
+				<td>[[${NAME}]]</td>
+				<td>[[${DEPARTMENT}]]</td>
+				<td>[[${POSITION_NAME}]]</td>
+				<td>[[${SALARY}]]</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

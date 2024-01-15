@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.employee.mapper.EmployeeMapper">
+
+	<resultMap type="employee" id="employee">
+		<id column="ENO" property="empNo" />
+		<result column="NAME" property="empName" />
+		<result column="DEPARTMENT" property="dept" />
+		<result column="POSITION_NO" property="positionNo" />
+		<result column="SALARY" property="salary" />
+		<result column="POSITION_NAME" property="positionName" />
+	</resultMap>
+
+	<select id="selectAllEmployee" resultMap="employee">
+		select * from employee
+	</select>
+
+	<insert id="insertEmployee" parameterType="employee">
+		insert into employee
+		values(#{empNo},#{empName},#{dept},#{positionNo},#{salary})
+	</insert>
+
+	<update id="updateEmployee" parameterType="employee">
+		update employee set
+		NAME = #{empName}, DEPARTMENT = #{dept},
+		POSITION_NO = #{positionNo},
+		SALARY = #{salary}
+		where ENO like #{empNo}
+	</update>
+
+	<delete id="deleteEmployee" parameterType="string">
+		delete from employee
+		where ENO like #{empNo}
+	</delete>
+
+	<select id="selectEmployee" parameterType="string"
+		resultMap="employee">
+		select * from employee where ENO like #{empNo}
+	</select>
+	
+	
+	
+	
+	<select id="employeeLowScoreList" resultMap="employee">
+		<![CDATA[
+			select * from student s join major m on s.major_no = m.major_no
+			where s.std_score < (select avg(std_score) from student)
+		]]>
+	</select>
+</mapper>
+
+
+
+
+
+
